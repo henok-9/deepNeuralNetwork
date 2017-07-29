@@ -52,13 +52,13 @@ def train_neural_network(x):
   
   # training
   for epoch in range(epochs_no):
-    epoch_loss = 0
-   for _ in range(int(mnist.train.num_examples/batch_size)):
-    epoch_x, epoch_y = mnist.train.next_batch(batch_size)
-    _, c = sess.run([optimizer, cost], feed_dict = {x: epoch_x, y: epoch_y})
-      # code that optimizes the weights & biases
-    epoch_loss += c
-   print('Epoch', epoch, 'completed out of', epochs_no, 'loss:', epoch_loss)
+      epoch_loss = 0
+      for _ in range(int(mnist.train.num_examples/batch_size)):
+          epoch_x, epoch_y = mnist.train.next_batch(batch_size)
+          _, c = sess.run([optimizer, cost], feed_dict = {x: epoch_x, y: epoch_y})
+            # code that optimizes the weights & biases
+          epoch_loss += c
+      print('Epoch', epoch, 'completed out of', epochs_no, 'loss:', epoch_loss)
   
   # testing
   correct = tf.equal(tf.argmax(prediction, 1), tf.argmax(y, 1))
